@@ -64,7 +64,17 @@ public class Paimon {
                     System.out.println("OK, I've marked this task as not done yet:");
                     System.out.println(items.get(index) + "\n");
 
-                } else if (str.startsWith("todo")) {
+                } else if (str.startsWith("delete")) {
+                    String num = str.substring(7);
+                    int index = Integer.parseInt(num) - 1;
+
+                    Todo deleted = items.remove(index);
+
+                    System.out.println("Noted. I've removed this task:");
+                    System.out.println(deleted);
+                    System.out.println("Now you have " + items.size() + " tasks in the list.\n");
+
+                }  else if (str.startsWith("todo")) {
                     String description = str.substring(5);
                     Todo todo = new Todo(description);
                     items.add(todo);
