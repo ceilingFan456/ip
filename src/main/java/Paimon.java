@@ -3,14 +3,12 @@ import java.util.ArrayList;
 
 public class Paimon {
     private Scanner sc;
-    private ArrayList<String> items;
-    private ArrayList<Boolean> isDone;
+    private ArrayList<Todo> items;
 
     // constructor
     public Paimon() {
         this.sc = new Scanner(System.in);
-        this.items = new ArrayList<String>();
-        this.isDone = new ArrayList<Boolean>();
+        this.items = new ArrayList<Todo>();
     }
 
     public void run() {
@@ -37,8 +35,7 @@ public class Paimon {
                     System.out.println("Empty list!");
                 } else {
                     for (int i = 0; i < items.size(); i++) {
-                        String status = isDone.get(i) ? "[X]" : "[ ]";
-                        System.out.println((i + 1) + ". " + status + " " + items.get(i));
+                        System.out.println((i + 1) + ". " + items.get(i));
                     }
                 }
                 System.out.println();
@@ -46,23 +43,49 @@ public class Paimon {
             } else if (str.startsWith("mark")) {
                 String num = str.substring(5);
                 int index = Integer.parseInt(num) - 1;
-                isDone.set(index, true);
+
+                items.get(index).mark();
 
                 System.out.println("Nice! I've marked this task as done:");
-                System.out.println("[X] " + items.get(index) + "\n");
+                System.out.println(items.get(index) + "\n");
             
             } else if (str.startsWith("unmark")) {
                 String num = str.substring(7);
                 int index = Integer.parseInt(num) - 1;
-                isDone.set(index, false);
+
+                items.get(index).unmark();
 
                 System.out.println("OK, I've marked this task as not done yet:");
-                System.out.println("[ ] " + items.get(index) + "\n");
+                System.out.println(items.get(index) + "\n");
+
+            } else if (str.startsWith("todo")) {
+                String description = str.substring(5);
+                Todo todo = new Todo(description);
+                items.add(todo);
+                System.out.println("Got it. I've added this task:");
+                System.out.println(todo);
+                System.out.println("Now you have " + items.size() + " tasks in the list.\n");
+
+            } else if (str.startsWith("deadline")) {
+                String description = str.substring(9);
+                String[] arr = description.split(" /by ");
+                Deadline deadline = new Deadline(arr[0], arr[1]);
+                items.add(deadline);
+                System.out.println("Got it. I've added this task:");
+                System.out.println(deadline);
+                System.out.println("Now you have " + items.size() + " tasks in the list.\n");
+
+            } else if (str.startsWith("event")) {
+                String description = str.substring(6);
+                String[] arr = description.split("/");
+                Event event = new Event(arr[0], arr[1].substring(5), arr[2].substring(3));
+                items.add(event);
+                System.out.println("Got it. I've added this task:");
+                System.out.println(event);
+                System.out.println("Now you have " + items.size() + " tasks in the list.\n");
 
             } else {
-                System.out.println("added: " + str + "\n");
-                items.add(str);
-                isDone.add(false);
+                System.out.println("Sorry i dont understand what you have asked: " + str);
             }
         }
     }
