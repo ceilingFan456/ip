@@ -14,6 +14,11 @@ public class Event extends Todo {
     }
 
     @Override
+    public String to_save() {
+        return getType() + " | " + (this.isDone ? "1" : "0") + " | " + getDescription() + " | " + this.from + " | " + this.to;
+    }
+
+    @Override
     public String getDescription() {
         return super.getDescription() + " (at: " + this.from + " to " + this.to + ")";
     }
