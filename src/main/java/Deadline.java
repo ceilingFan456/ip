@@ -12,6 +12,11 @@ class Deadline extends Todo {
     } 
 
     @Override
+    public String to_save() {
+        return getType() + " | " + (this.isDone ? "1" : "0") + " | " + getDescription() + " | " + this.by;
+    }
+
+    @Override
     public String toString() {
         return super.toString() + " (by: " + this.by + ")";
     }

@@ -29,6 +29,10 @@ public class Todo {
         return "[T]";
     }
 
+    public String to_save() {
+        return getType() + " | " + (this.isDone ? "1" : "0") + " | " + getDescription();
+    }
+
     @Override
     public String toString() {
         return getType() + getStatus() + " " + getDescription();
