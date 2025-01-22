@@ -170,8 +170,9 @@ public class Paimon {
 
                 } else if (str.startsWith("event")) {
                     String description = str.substring(6);
-                    String[] arr = description.split("/");
-                    Event event = new Event(arr[0], arr[1].substring(5), arr[2].substring(3));
+                    String[] arr = description.split(" /from ");
+                    String[] arr2 = arr[1].split(" /to ");
+                    Event event = new Event(arr[0], arr2[0], arr2[1]);
                     items.add(event);
                     System.out.println("Got it. I've added this task:");
                     System.out.println(event);
