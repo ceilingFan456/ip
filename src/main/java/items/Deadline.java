@@ -1,7 +1,8 @@
+package items;
 import java.time.LocalDateTime; 
 import java.time.format.DateTimeFormatter;
 
-class Deadline extends Todo {
+public class Deadline extends Todo {
     protected LocalDateTime by;
 
     public Deadline(String description, String by) {
