@@ -8,13 +8,6 @@ import items.Todo;
 import storage.Storage;
 import tasklist.Tasklist;
 
-import java.util.ArrayList;
-import java.io.File;
-import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-
 public class Paimon {
     private Scanner sc;
     private Tasklist items;
@@ -26,6 +19,9 @@ public class Paimon {
         this.sc = new Scanner(System.in);
         this.items = new Tasklist();
         this.storage = new Storage();
+
+        // load the items
+        this.storage.populate_tasklist(this.items);
     }
 
     public void run() {
