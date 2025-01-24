@@ -5,6 +5,8 @@ import exceptions.PaimonInvalidInputException;
 import items.Deadline;
 import items.Event;
 import items.Todo;
+import storage.Storage;
+import tasklist.Tasklist;
 
 import java.util.ArrayList;
 import java.io.File;
@@ -15,82 +17,15 @@ import java.io.FileWriter;
 
 public class Paimon {
     private Scanner sc;
-    private ArrayList<Todo> items;
-    private File file;
-    private final String filePath = "data/items.txt";
+    private Tasklist items;
+    private Storage storage;
+
 
     // constructor
     public Paimon() {
         this.sc = new Scanner(System.in);
-        this.items = new ArrayList<Todo>();
-        this.file = new File(this.filePath);
-
-        // create file if not exists
-        try {
-            // create folder if not exists
-            File parentDir = this.file.getParentFile();
-            if (parentDir != null && !parentDir.exists()) {
-                parentDir.mkdirs();
-                System.out.println("New folder created: " + parentDir);
-            }
-
-            // create file if not exists
-            if (!(this.file.exists())) {
-                this.file.createNewFile();
-                System.out.println("New file created: " + this.filePath);
-            }
-        } catch (IOException e) {
-            System.out.println("An error occurred with creating new file: " + e.getMessage());
-        }
-
-        // load from file
-        try (BufferedReader reader = new BufferedReader(new FileReader(this.filePath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] arr = line.split(" \\| "); // split uses regular expression and using "|" means space.                
-                // handle three cases
-                if (arr[0].equals("[T]")) {
-                    Todo todo = new Todo(arr[2]);
-                    this.items.add(todo);
-                } else if (arr[0].equals("[D]")) {
-                    Deadline deadline = new Deadline(arr[2], arr[3]);
-                    this.items.add(deadline);
-                } else if (arr[0].equals("[E]")) {
-                    Event event = new Event(arr[2], arr[3], arr[4]);
-                    this.items.add(event);
-                }
-
-                // mark the status
-                if (arr[1].equals("1")) {
-                    this.items.get(this.items.size() - 1).mark();
-                }
-            }
-
-            // print current item count 
-            System.out.println("Loaded " + this.items.size() + " items from the saved list.");
-
-        } catch (IOException e) {
-            System.err.println("An error occurred while reading the file: " + e.getMessage());
-        }
-    }
-
-    public void save_items() {
-        // clear the current file content
-        try {
-            this.file.delete();
-            this.file.createNewFile();
-        } catch (IOException e) {
-            System.out.println("An error occurred with creating new file: " + e.getMessage());
-        }
-
-        // write the content of the new item list
-        try (FileWriter writer = new FileWriter(this.file)) {
-            for (Todo item : this.items) {
-                writer.write(item.to_save() + "\n");
-            }
-        } catch (IOException e) {
-            System.err.println("An error occurred while writing to the file: " + e.getMessage());
-        }
+        this.items = new Tasklist();
+        this.storage = new Storage();
     }
 
     public void run() {
@@ -186,7 +121,7 @@ public class Paimon {
                 }
 
                 // save the items
-                this.save_items();
+                this.storage.save(this.items);
             }
         } catch (PaimonException e) {
             System.out.println("An error occurred: " + e.getMessage() + "\nExited with error.");
