@@ -1,8 +1,8 @@
-package commands;
+package paimon.commands;
 
-import tasklist.TaskList;
-import ui.UI;
-import items.Todo;
+import paimon.tasklist.TaskList;
+import paimon.ui.UI;
+import paimon.items.Todo;
 
 public class CommandDelete extends Command {
     private int index;

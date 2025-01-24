@@ -1,4 +1,4 @@
-package exceptions;
+package paimon.exceptions;
 
 public class PaimonInvalidInputException extends PaimonException {
     public PaimonInvalidInputException(String message) {

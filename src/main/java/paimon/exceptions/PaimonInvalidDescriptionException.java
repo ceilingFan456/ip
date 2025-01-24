@@ -1,4 +1,4 @@
-package exceptions;
+package paimon.exceptions;
 
 public class PaimonInvalidDescriptionException extends PaimonException {
     public PaimonInvalidDescriptionException(String message) {

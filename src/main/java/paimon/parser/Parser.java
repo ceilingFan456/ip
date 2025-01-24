@@ -1,19 +1,19 @@
-package parser;
+package paimon.parser;
 
-import commands.Command;
-import commands.CommandGoodbye;
-import commands.CommandList;
-import commands.CommandMark;
-import commands.CommandUnmark;
-import commands.CommandDelete;
-import commands.CommandEmpty;
-import commands.CommandCreate;
+import paimon.commands.Command;
+import paimon.commands.CommandGoodbye;
+import paimon.commands.CommandList;
+import paimon.commands.CommandMark;
+import paimon.commands.CommandUnmark;
+import paimon.commands.CommandDelete;
+import paimon.commands.CommandEmpty;
+import paimon.commands.CommandCreate;
 
-import items.Todo;
-import items.Deadline;
-import items.Event;
+import paimon.items.Todo;
+import paimon.items.Deadline;
+import paimon.items.Event;
 
-import exceptions.PaimonInvalidInputException;
+import paimon.exceptions.PaimonInvalidInputException;
 
 public class Parser {
 
