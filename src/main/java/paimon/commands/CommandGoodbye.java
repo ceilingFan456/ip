@@ -1,7 +1,7 @@
-package commands;
+package paimon.commands;
 
-import tasklist.TaskList;
-import ui.UI;
+import paimon.tasklist.TaskList;
+import paimon.ui.UI;
 
 public class CommandGoodbye extends Command {
     @Override

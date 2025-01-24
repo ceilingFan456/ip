@@ -1,7 +1,7 @@
-package commands;
+package paimon.commands;
 
-import tasklist.TaskList;
-import ui.UI;
+import paimon.tasklist.TaskList;
+import paimon.ui.UI;
 
 public abstract class Command {
     // an abstract class that manipulate tasklist and makes UI do things

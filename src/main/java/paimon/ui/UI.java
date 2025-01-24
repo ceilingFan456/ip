@@ -1,4 +1,4 @@
-package ui;
+package paimon.ui;
 
 import java.util.Scanner;
 

@@ -1,8 +1,10 @@
-import storage.Storage;
-import tasklist.TaskList;
-import ui.UI;
-import parser.Parser;
-import commands.Command;
+package paimon;
+
+import paimon.storage.Storage;
+import paimon.tasklist.TaskList;
+import paimon.parser.Parser;
+import paimon.commands.Command;
+import paimon.ui.UI;
 
 public class Paimon {
     private TaskList items;
