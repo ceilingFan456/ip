@@ -1,4 +1,3 @@
-import exceptions.PaimonException;
 import storage.Storage;
 import tasklist.TaskList;
 import ui.UI;
@@ -22,11 +21,8 @@ public class Paimon {
 
     public void run() {
         this.ui.greet();
-
-        // loop variables
         boolean running = true;
-
-            // main loop
+        
         while (running) {
             String str = this.ui.readCommand();
             Command c = Parser.parse(str);

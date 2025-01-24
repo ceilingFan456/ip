@@ -5,6 +5,10 @@ import java.util.Scanner;
 public class UI {
     private Scanner sc;
 
+    public UI() {
+        this.sc = new Scanner(System.in);
+    }
+
     public void greet() {
         // greeting message
         System.out.println("Hello! I'm Paimon");
