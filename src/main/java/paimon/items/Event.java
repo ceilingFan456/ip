@@ -27,4 +27,14 @@ public class Event extends Todo {
     public String toString() {
         return super.toString() + " (at: " + this.from.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " to " + this.to.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Event) {
+            Event e = (Event) obj;
+            return super.equals(e) && this.from.equals(e.from) && this.to.equals(e.to);
+        } else {
+            return false;
+        }
+    }
 }

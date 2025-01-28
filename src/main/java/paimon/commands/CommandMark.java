@@ -17,4 +17,14 @@ public class CommandMark extends Command {
         ui.print(t.get(index) + "\n");
         return true;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof CommandMark) {
+            CommandMark c = (CommandMark) obj;
+            return this.index == c.index;
+        } else {
+            return false;
+        }
+    }
 }

@@ -38,4 +38,14 @@ public class Todo {
     public String toString() {
         return getType() + getStatus() + " " + getDescription();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Todo) {
+            Todo t = (Todo) obj;
+            return this.description.equals(t.description) && this.isDone == t.isDone;
+        } else {
+            return false;
+        }
+    }
 }

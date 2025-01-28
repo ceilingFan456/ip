@@ -20,4 +20,14 @@ public class CommandCreate extends Command {
         ui.print("Now you have " + t.size() + " tasks in the list.\n");
         return true;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof CommandCreate) {
+            CommandCreate c = (CommandCreate) obj;
+            return this.td.equals(c.td);
+        } else {
+            return false;
+        }
+    }
 }

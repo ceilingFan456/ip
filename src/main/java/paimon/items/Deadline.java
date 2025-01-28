@@ -25,4 +25,14 @@ public class Deadline extends Todo {
     public String toString() {
         return super.toString() + " (by: " + this.by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Deadline) {
+            Deadline d = (Deadline) obj;
+            return super.equals(d) && this.by.equals(d.by);
+        } else {
+            return false;
+        }
+    }
 }
