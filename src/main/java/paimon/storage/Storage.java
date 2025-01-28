@@ -14,7 +14,7 @@ import paimon.items.Deadline;
 import paimon.items.Event;
 
 public class Storage {
-    private File file;
+    private final File file;
     private final String filePath = "data/items.txt";
 
     public Storage() {

@@ -17,4 +17,14 @@ public class CommandUnmark extends Command {
         ui.print(t.get(index) + "\n");
         return true;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof CommandUnmark) {
+            CommandUnmark c = (CommandUnmark) obj;
+            return this.index == c.index;
+        } else {
+            return false;
+        }
+    }
 }

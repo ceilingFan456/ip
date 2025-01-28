@@ -19,4 +19,14 @@ public class CommandDelete extends Command {
         ui.print("Now you have " + t.size() + " tasks in the list.\n");
         return true;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof CommandDelete) {
+            CommandDelete c = (CommandDelete) obj;
+            return this.index == c.index;
+        } else {
+            return false;
+        }
+    }
 }
