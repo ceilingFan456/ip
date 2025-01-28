@@ -7,6 +7,7 @@ import paimon.commands.CommandMark;
 import paimon.commands.CommandUnmark;
 import paimon.commands.CommandDelete;
 import paimon.commands.CommandEmpty;
+import paimon.commands.CommandFind;
 import paimon.commands.CommandCreate;
 
 import paimon.items.Todo;
@@ -57,6 +58,11 @@ public class Parser {
                 String[] arr2 = arr[1].split(" /to ");
                 Event event = new Event(arr[0], arr2[0], arr2[1]);
                 return new CommandCreate(event);
+
+            } else if (str.startsWith("find")) {
+                String keyword = str.substring(5);
+                return new CommandFind(keyword);
+
             } else {
                 throw new PaimonInvalidInputException(str);
             }

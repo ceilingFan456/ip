@@ -35,6 +35,22 @@ public class TaskList implements Iterable<Todo> {
         this.items.get(index).unmark();
     }
 
+    /**
+     * Find tasks that contain the keyword
+     * 
+     * @param keyword the keyword to search for
+     * @return a TaskList only containing the tasks that contain the keyword
+     */
+    public TaskList find(String keyword) {
+        TaskList found = new TaskList();
+        for (Todo task : this.items) {
+            if (task.getDescription().contains(keyword)) {
+                found.add(task);
+            }
+        }
+        return found;
+    }
+
     public void list_items() {
         if (this.items.size() == 0) {
             System.out.println("Empty list!");
