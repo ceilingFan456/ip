@@ -40,19 +40,22 @@ public class Storage {
     }
 
     // load into item list from file.
-    public void populate_tasklist(TaskList items) {
+    public void populateTaskList(TaskList items) {
         // load from file
         try (BufferedReader reader = new BufferedReader(new FileReader(this.filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] arr = line.split(" \\| "); // split uses regular expression and using "|" means space.                
+                String[] arr = line.split(" \\| "); // in regular expression "|" means space.                
+
                 // handle three cases
                 if (arr[0].equals("[T]")) {
                     Todo todo = new Todo(arr[2]);
                     items.add(todo);
+
                 } else if (arr[0].equals("[D]")) {
                     Deadline deadline = new Deadline(arr[2], arr[3]);
                     items.add(deadline);
+                
                 } else if (arr[0].equals("[E]")) {
                     Event event = new Event(arr[2], arr[3], arr[4]);
                     items.add(event);
@@ -78,6 +81,7 @@ public class Storage {
         try {
             this.file.delete();
             this.file.createNewFile();
+
         } catch (IOException e) {
             System.out.println("An error occurred with creating new file: " + e.getMessage());
         }

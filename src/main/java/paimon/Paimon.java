@@ -18,9 +18,14 @@ public class Paimon {
         this.ui = new UI();
 
         // load the items
-        this.storage.populate_tasklist(this.items);
+        this.storage.populateTaskList(this.items);
     }
 
+    /**
+     * Runs the main logic loop of paimon.commands
+     * 
+     * @return void
+     */
     public void run() {
         this.ui.greet();
         boolean running = true;
@@ -32,6 +37,7 @@ public class Paimon {
             this.storage.save(this.items);
         }
     }
+
     public static void main(String[] args) {
         new Paimon().run();
     }
