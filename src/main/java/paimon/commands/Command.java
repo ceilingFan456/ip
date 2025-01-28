@@ -4,7 +4,13 @@ import paimon.tasklist.TaskList;
 import paimon.ui.UI;
 
 public abstract class Command {
-    // an abstract class that manipulate tasklist and makes UI do things
+    /**
+     * Execute the command with current tasklist and ui
+     * 
+     * @param t tasklist involved
+     * @param ui ui for interaction with user
+     * @return boolean whether the program should continue to run after command is executed
+     */
     public abstract boolean execute(TaskList t, UI ui);
 
     // same type of command is euqal

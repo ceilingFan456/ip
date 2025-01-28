@@ -39,7 +39,11 @@ public class Storage {
         }
     }
 
-    // load into item list from file.
+    /**
+     * Load records from the file into tasklist.
+     * 
+     * @param items Tasklist to be populated.
+     */
     public void populate_tasklist(TaskList items) {
         // load from file
         try (BufferedReader reader = new BufferedReader(new FileReader(this.filePath))) {
@@ -72,7 +76,11 @@ public class Storage {
         }
     }
     
-    // take item list and save everything to file.
+    /**
+     * Save the tasklist into the file.
+     * 
+     * @param items Tasklist to be saved.
+     */
     public void save(TaskList items) {
         // clear the current file content
         try {
