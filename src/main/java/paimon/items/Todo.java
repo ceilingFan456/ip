@@ -17,6 +17,9 @@ public class Todo {
         return this.isDone ? "[X]" : "[ ]";
     }
 
+    /**
+     * Marks the task as done
+     */
     public void mark() {
         this.isDone = true;
     }
@@ -25,11 +28,20 @@ public class Todo {
         this.isDone = false;
     }
 
-    // functions that differ between classes
+    /**
+     * Returns the type of the task.
+     * 
+     * @return a string representing the type of the task.
+     */
     public String getType() {
         return "[T]";
     }
 
+    /**
+     * Returns a string representing the item to be saved in file.
+     * 
+     * @return string with standard format to represent the item.
+     */
     public String to_save() {
         return getType() + " | " + (this.isDone ? "1" : "0") + " | " + getDescription();
     }

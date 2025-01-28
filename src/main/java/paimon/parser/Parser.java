@@ -17,6 +17,12 @@ import paimon.exceptions.PaimonInvalidInputException;
 
 public class Parser {
 
+    /**
+     * Parses the input string and returns the corresponding Command object.
+     * 
+     * @param str Input string from user.
+     * @return Command object that can be executed.
+     */
     public static Command parse(String str) {
         try {
             if (str.equals("bye")) {
