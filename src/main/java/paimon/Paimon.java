@@ -1,9 +1,9 @@
 package paimon;
 
+import paimon.commands.Command;
+import paimon.parser.Parser;
 import paimon.storage.Storage;
 import paimon.tasklist.TaskList;
-import paimon.parser.Parser;
-import paimon.commands.Command;
 import paimon.ui.UI;
 
 public class Paimon {
@@ -22,9 +22,8 @@ public class Paimon {
     }
 
     /**
-     * Runs the main logic loop of paimon.commands
-     * 
-     * @return void
+     * Runs the main logic loop of paimon
+     *
      */
     public void run() {
         this.ui.greet();

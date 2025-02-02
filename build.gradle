@@ -44,4 +44,5 @@ run{
 
 checkstyle {
     toolVersion = '10.2'
+    configProperties.put("suppressions.file", file("suppressions.xml"))
 }
