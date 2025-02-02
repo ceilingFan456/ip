@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 import paimon.items.Todo;
 
+/**
+ * TaskList class that stores the Todo tasks. 
+ * Aslo can store Deadline and Event tasks. 
+ */
 public class TaskList implements Iterable<Todo> {
     private ArrayList<Todo> items;
 
@@ -16,7 +20,7 @@ public class TaskList implements Iterable<Todo> {
     }
 
     /**
-     * Add an item to the list
+     * Adds an item to the list
      * 
      * @param task
      */
@@ -25,7 +29,7 @@ public class TaskList implements Iterable<Todo> {
     }
 
     /**
-     * Remove an item from the list
+     * Removes an item from the list
      * 
      * @param index index of the item to be removed, 0 indexed
      * @return the item that was removed
@@ -35,7 +39,7 @@ public class TaskList implements Iterable<Todo> {
     }
 
     /**
-     * Get the number of items in the list
+     * Gets the number of items in the list
      * 
      * @return number of items in the list
      */
@@ -44,7 +48,7 @@ public class TaskList implements Iterable<Todo> {
     }
 
     /**
-     * Mark an item as done
+     * Marks an item as done
      * 
      * @param index index of the item to be marked as done, 0 indexed
      */
@@ -53,7 +57,7 @@ public class TaskList implements Iterable<Todo> {
     }
 
     /**
-     * Unmark an item as done
+     * Unmarks an item as done
      * 
      * @param index index of the item to be unmarked, 0 indexed
      */
@@ -62,7 +66,7 @@ public class TaskList implements Iterable<Todo> {
     }
 
     /**
-     * Find tasks that contain the keyword
+     * Finds tasks that contain the keyword
      * 
      * @param keyword the keyword to search for
      * @return a TaskList only containing the tasks that contain the keyword
@@ -77,6 +81,9 @@ public class TaskList implements Iterable<Todo> {
         return found;
     }
 
+    /**
+     * Lists all the current items in the list and outputs to screen. 
+     */
     public void list_items() {
         if (this.items.size() == 0) {
             System.out.println("Empty list!");

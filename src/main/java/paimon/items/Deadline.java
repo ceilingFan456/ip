@@ -1,11 +1,20 @@
 package paimon.items;
 
-import java.time.LocalDateTime; 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Deadline is a subclass of Todo that has a deadline.
+ */
 public class Deadline extends Todo {
     protected LocalDateTime by;
 
+    /**
+     * Constructor for Deadline.
+     * 
+     * @param description same as description in Todo
+     * @param by the deadline of the task in format "d/M/yyyy HHmm"
+     */
     public Deadline(String description, String by) {
         super(description);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");

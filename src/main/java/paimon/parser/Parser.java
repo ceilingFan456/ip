@@ -1,21 +1,22 @@
 package paimon.parser;
 
 import paimon.commands.Command;
+import paimon.commands.CommandCreate;
+import paimon.commands.CommandDelete;
+import paimon.commands.CommandEmpty;
+import paimon.commands.CommandFind;
 import paimon.commands.CommandGoodbye;
 import paimon.commands.CommandList;
 import paimon.commands.CommandMark;
 import paimon.commands.CommandUnmark;
-import paimon.commands.CommandDelete;
-import paimon.commands.CommandEmpty;
-import paimon.commands.CommandFind;
-import paimon.commands.CommandCreate;
-
-import paimon.items.Todo;
+import paimon.exceptions.PaimonInvalidInputException;
 import paimon.items.Deadline;
 import paimon.items.Event;
+import paimon.items.Todo;
 
-import paimon.exceptions.PaimonInvalidInputException;
-
+/**
+ * Parse class that parse the natural language input string into Command objects.
+ */
 public class Parser {
 
     /**
@@ -47,7 +48,7 @@ public class Parser {
                 int index = Integer.parseInt(num) - 1;
                 return new CommandDelete(index);
 
-            }  else if (str.startsWith("todo")) {
+            } else if (str.startsWith("todo")) {
                 String description = str.substring(5);
                 Todo todo = new Todo(description);
                 return new CommandCreate(todo);

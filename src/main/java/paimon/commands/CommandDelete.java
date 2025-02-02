@@ -1,9 +1,12 @@
 package paimon.commands;
 
+import paimon.items.Todo;
 import paimon.tasklist.TaskList;
 import paimon.ui.UI;
-import paimon.items.Todo;
 
+/**
+ * CommandDelete class is a subclass of Command that deletes a task from the TaskList.
+ */
 public class CommandDelete extends Command {
     private int index;
 

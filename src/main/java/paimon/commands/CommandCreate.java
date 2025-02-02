@@ -1,9 +1,13 @@
 package paimon.commands;
 
+import paimon.items.Todo;
 import paimon.tasklist.TaskList;
 import paimon.ui.UI;
-import paimon.items.Todo;
 
+/**
+ * CommandCreate class is a subclass of Command that 
+ * creates a new Todo task and adds it to the TaskList.
+ */
 public class CommandCreate extends Command {
     private Todo td;
 

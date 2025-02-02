@@ -3,6 +3,9 @@ package paimon.commands;
 import paimon.tasklist.TaskList;
 import paimon.ui.UI;
 
+/**
+ * CommandMark marks a task at given index as done.
+ */
 public class CommandMark extends Command {
     private int index;
 

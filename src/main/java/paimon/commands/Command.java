@@ -3,6 +3,11 @@ package paimon.commands;
 import paimon.tasklist.TaskList;
 import paimon.ui.UI;
 
+/**
+ * Abstract class for all commands.
+ * A command is an action that can be executed with a tasklist and ui given
+ * a user input.
+ */
 public abstract class Command {
     /**
      * Execute the command with current tasklist and ui

@@ -3,6 +3,9 @@ package paimon.commands;
 import paimon.tasklist.TaskList;
 import paimon.ui.UI;
 
+/**
+ * CommandUnmark marks a task at given index as not done.
+ */
 public class CommandUnmark extends Command {
     private int index;
 

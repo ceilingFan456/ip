@@ -11,10 +11,17 @@ import paimon.items.Event;
 import paimon.items.Todo;
 import paimon.tasklist.TaskList;
 
+/**
+ * Storage class loads and saves the tasklist into local file.
+ * Currently the file is stored after every update.
+ */
 public class Storage {
     private final File file;
     private final String filePath = "data/items.txt";
 
+    /**
+     * Constructor for Storage class.
+     */
     public Storage() {
         this.file = new File(this.filePath);
 
@@ -38,7 +45,7 @@ public class Storage {
     }
 
     /**
-     * Load records from the file into tasklist.
+     * Loads records from the file into tasklist.
      * 
      * @param items Tasklist to be populated.
      */
@@ -78,7 +85,7 @@ public class Storage {
     }
     
     /**
-     * Save the tasklist into the file.
+     * Saves the tasklist into the file.
      * 
      * @param items Tasklist to be saved.
      */
