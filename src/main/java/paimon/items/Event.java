@@ -3,10 +3,20 @@ package paimon.items;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Event is a subclass of Todo that has a start and end time.
+ */
 public class Event extends Todo {
     protected LocalDateTime from;
     protected LocalDateTime to;
 
+    /**
+     * Constructor for Event.
+     * 
+     * @param description same as description in Todo.
+     * @param from the start time of the event in format "d/M/yyyy HHmm".
+     * @param to the end time of the event in format "d/M/yyyy HHmm".
+     */
     public Event(String description, String from, String to) {
         super(description);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
