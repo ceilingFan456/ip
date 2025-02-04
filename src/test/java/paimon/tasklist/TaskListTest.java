@@ -1,16 +1,16 @@
-package paimon.tasklist;  //same package as the class being tested
+package paimon.tasklist; //same package as the class being tested
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
 import paimon.items.Deadline;
-import paimon.items.Todo;
 import paimon.items.Event;
+import paimon.items.Todo;
 
 public class TaskListTest {
     @Test
-    public void addTest(){
+    public void addTest() {
         TaskList taskList = new TaskList();
 
         Todo t0 = new Todo("todo borrow book");
@@ -27,7 +27,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void sizeTest(){
+    public void sizeTest() {
         TaskList taskList = new TaskList();
 
         Todo t0 = new Todo("todo borrow book");
@@ -42,7 +42,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void markTest(){
+    public void markTest() {
         TaskList taskList = new TaskList();
 
         Todo t0 = new Todo("todo borrow book");

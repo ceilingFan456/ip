@@ -1,7 +1,7 @@
 package paimon.commands;
 
 import paimon.tasklist.TaskList;
-import paimon.ui.UI;
+import paimon.ui.Ui;
 
 /**
  * CommandFind is a Command that finds tasks with a keyword.
@@ -16,7 +16,7 @@ public class CommandFind extends Command {
     }
 
     @Override
-    public boolean execute(TaskList t, UI ui) {
+    public boolean execute(TaskList t, Ui ui) {
         // find the task with the keyword
         TaskList found = t.find(this.keyword);
 

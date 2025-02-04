@@ -1,7 +1,7 @@
 package paimon.commands;
 
 import paimon.tasklist.TaskList;
-import paimon.ui.UI;
+import paimon.ui.Ui;
 
 /**
  * CommandEmpty is a Command that does nothing.
@@ -9,7 +9,7 @@ import paimon.ui.UI;
  */
 public class CommandEmpty extends Command {
     @Override
-    public boolean execute(TaskList t, UI ui) {
+    public boolean execute(TaskList t, Ui ui) {
         return true;
     }
 }

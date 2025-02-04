@@ -17,7 +17,6 @@ public class Todo {
         this.isDone = false;
     }
 
-    // fixed functions 
     public String getDescription() {
         return description;
     }
