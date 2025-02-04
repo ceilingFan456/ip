@@ -6,7 +6,7 @@ import java.util.Scanner;
  * UI class that interacts with the user.
  * For example, it reads input from users. 
  */
-public class UI {
+public class Ui {
     private Scanner sc;
 
     public UI() {
