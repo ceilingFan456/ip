@@ -47,4 +47,11 @@ public class Paimon {
     public static void main(String[] args) {
         new Paimon().run();
     }
+
+    /**
+     * Generates a response for the user's chat message.
+     */
+    public String getResponse(String input) {
+        return "Paimon heard: " + input;
+    }
 }

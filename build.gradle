@@ -43,8 +43,11 @@ test {
     }
 }
 
+// application {
+//     mainClass.set("paimon.Paimon")
+// }
 application {
-    mainClass.set("paimon.Paimon")
+    mainClass.set("paimon.Launcher")
 }
 
 shadowJar {
