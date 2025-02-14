@@ -4,7 +4,7 @@ import paimon.commands.Command;
 import paimon.parser.Parser;
 import paimon.storage.Storage;
 import paimon.tasklist.TaskList;
-import paimon.ui.UI;
+import paimon.ui.Ui;
 
 /** 
  * Paimon is a chatbot that keeps track of tasks for users. 
@@ -14,7 +14,7 @@ import paimon.ui.UI;
 public class Paimon {
     private TaskList items;
     private Storage storage;
-    private UI ui;
+    private Ui ui;
 
     /** 
      * Constructor for Paimon chatbot.
@@ -22,7 +22,7 @@ public class Paimon {
     public Paimon() {
         this.items = new TaskList();
         this.storage = new Storage();
-        this.ui = new UI();
+        this.ui = new Ui();
 
         // load the items
         this.storage.populateTaskList(this.items);

@@ -1,7 +1,7 @@
 package paimon.commands;
 
 import paimon.tasklist.TaskList;
-import paimon.ui.UI;
+import paimon.ui.Ui;
 
 /**
  * CommandMark marks a task at given index as done.
@@ -14,7 +14,7 @@ public class CommandMark extends Command {
     }
 
     @Override
-    public boolean execute(TaskList t, UI ui) {
+    public boolean execute(TaskList t, Ui ui) {
         t.mark(index);
         ui.print("Nice! I've marked this task as done:");
         ui.print(t.get(index) + "\n");
