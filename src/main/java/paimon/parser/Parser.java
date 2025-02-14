@@ -36,16 +36,22 @@ public class Parser {
             } else if (str.startsWith("mark")) {
                 String num = str.substring(5);
                 int index = Integer.parseInt(num) - 1;
+
+                assert index >= 0 : "Index should be non-negative";
                 return new CommandMark(index);
             
             } else if (str.startsWith("unmark")) {
                 String num = str.substring(7);
                 int index = Integer.parseInt(num) - 1;
+                assert index >= 0 : "Index should be non-negative";
+
                 return new CommandUnmark(index);
 
             } else if (str.startsWith("delete")) {
                 String num = str.substring(7);
                 int index = Integer.parseInt(num) - 1;
+
+                assert index >= 0 : "Index should be non-negative"; 
                 return new CommandDelete(index);
 
             } else if (str.startsWith("todo")) {
@@ -55,12 +61,19 @@ public class Parser {
 
             } else if (str.startsWith("deadline")) {
                 String description = str.substring(9);
+
+                assert description.contains(" /by ") : "Deadline should contain /by";
+
                 String[] arr = description.split(" /by ");
                 Deadline deadline = new Deadline(arr[0], arr[1]);
                 return new CommandCreate(deadline);
 
             } else if (str.startsWith("event")) {
                 String description = str.substring(6);
+
+                assert description.contains(" /from ") : "Event should contain /from";
+                assert description.contains(" /to ") : "Event should contain /to";
+
                 String[] arr = description.split(" /from ");
                 String[] arr2 = arr[1].split(" /to ");
                 Event event = new Event(arr[0], arr2[0], arr2[1]);

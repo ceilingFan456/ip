@@ -3,7 +3,7 @@ package paimon.ui;
 import java.util.Scanner;
 
 /**
- * UI class that interacts with the user.
+ * Ui class that interacts with the user.
  * For example, it reads input from users. 
  */
 public class Ui {
