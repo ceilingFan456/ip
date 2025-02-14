@@ -1,7 +1,7 @@
 package paimon.commands;
 
 import paimon.tasklist.TaskList;
-import paimon.ui.UI;
+import paimon.ui.Ui;
 
 /**
  * Abstract class for all commands.
@@ -16,7 +16,7 @@ public abstract class Command {
      * @param ui ui for interaction with user
      * @return boolean whether the program should continue to run after command is executed
      */
-    public abstract boolean execute(TaskList t, UI ui);
+    public abstract boolean execute(TaskList t, Ui ui);
 
     // same type of command is euqal
     @Override

@@ -1,7 +1,7 @@
 package paimon.commands;
 
 import paimon.tasklist.TaskList;
-import paimon.ui.UI;
+import paimon.ui.Ui;
 
 /**
  * CommandUnmark marks a task at given index as not done.
@@ -14,7 +14,7 @@ public class CommandUnmark extends Command {
     }
 
     @Override
-    public boolean execute(TaskList t, UI ui) {
+    public boolean execute(TaskList t, Ui ui) {
         t.unmark(index);
         ui.print("OK, I've marked this task as not done yet:");
         ui.print(t.get(index) + "\n");

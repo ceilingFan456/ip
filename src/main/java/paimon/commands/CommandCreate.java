@@ -2,7 +2,7 @@ package paimon.commands;
 
 import paimon.items.Todo;
 import paimon.tasklist.TaskList;
-import paimon.ui.UI;
+import paimon.ui.Ui;
 
 /**
  * CommandCreate class is a subclass of Command that 
@@ -16,7 +16,7 @@ public class CommandCreate extends Command {
     }
 
     @Override
-    public boolean execute(TaskList t, UI ui) {
+    public boolean execute(TaskList t, Ui ui) {
         t.add(this.td);
 
         ui.print("Got it. I've added this task:");
