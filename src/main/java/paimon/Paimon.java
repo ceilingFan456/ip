@@ -52,6 +52,9 @@ public class Paimon {
      * Generates a response for the user's chat message.
      */
     public String getResponse(String input) {
-        return "Paimon heard: " + input;
+        Command c = Parser.parse(input);
+        String res = c.executeToString(this.items, this.ui);
+        this.storage.save(this.items);
+        return res;
     }
 }

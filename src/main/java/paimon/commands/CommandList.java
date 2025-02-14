@@ -12,4 +12,9 @@ public class CommandList extends Command {
         t.list_items();
         return true;
     }
+
+    @Override
+    public String executeToString(TaskList t, Ui ui) {
+        return t.list_items_toString();
+    }
 }

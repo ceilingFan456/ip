@@ -22,6 +22,13 @@ public class CommandUnmark extends Command {
     }
 
     @Override
+    public String executeToString(TaskList t, Ui ui) {
+        t.unmark(index);
+        String res = "OK, I've marked this task as not done yet:\n" + t.get(index) + "\n";
+        return res;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (obj instanceof CommandUnmark) {
             CommandUnmark c = (CommandUnmark) obj;

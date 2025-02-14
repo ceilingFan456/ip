@@ -26,6 +26,16 @@ public class CommandCreate extends Command {
     }
 
     @Override
+    public String executeToString(TaskList t, Ui ui) {
+        t.add(this.td);
+
+        String res = "Got it. I've added this task:\n" 
+                + this.td + "\nNow you have " + t.size() 
+                + " tasks in the list.\n";
+        return res;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (obj instanceof CommandCreate) {
             CommandCreate c = (CommandCreate) obj;
