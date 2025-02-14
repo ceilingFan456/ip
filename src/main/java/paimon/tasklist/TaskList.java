@@ -95,6 +95,21 @@ public class TaskList implements Iterable<Todo> {
         System.out.println();
     }
 
+    /**
+     * Lists all the current items in the list and outputs to screen.
+     */
+    public String list_items_toString() {
+        StringBuilder sb = new StringBuilder();
+        if (this.items.size() == 0) {
+            sb.append("Empty list!\n");
+        } else {
+            for (int i = 0; i < this.items.size(); i++) {
+                sb.append((i + 1) + ". " + this.items.get(i) + "\n");
+            }
+        }
+        return sb.toString();
+    }
+
     @Override
     public java.util.Iterator<Todo> iterator() {
         return this.items.iterator();

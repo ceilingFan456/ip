@@ -47,4 +47,14 @@ public class Paimon {
     public static void main(String[] args) {
         new Paimon().run();
     }
+
+    /**
+     * Generates a response for the user's chat message.
+     */
+    public String getResponse(String input) {
+        Command c = Parser.parse(input);
+        String res = c.executeToString(this.items, this.ui);
+        this.storage.save(this.items);
+        return res;
+    }
 }

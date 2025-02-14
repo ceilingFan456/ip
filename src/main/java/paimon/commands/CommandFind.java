@@ -25,6 +25,13 @@ public class CommandFind extends Command {
         return true;
     }
 
+    @Override
+    public String executeToString(TaskList t, Ui ui) {
+        TaskList found = t.find(this.keyword);
+        String res = "Here are the matching tasks in your list:\n" + found.list_items_toString();
+        return res;
+    }
+
     // same type of command is euqal
     @Override
     public boolean equals(Object obj) {

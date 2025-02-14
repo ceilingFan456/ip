@@ -12,4 +12,9 @@ public class CommandGoodbye extends Command {
         ui.goodbye();
         return false;
     }
+
+    @Override
+    public String executeToString(TaskList t, Ui ui) {
+        return "Goodbye!";
+    }
 }

@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Ui {
     private Scanner sc;
 
-    public UI() {
+    public Ui() {
         this.sc = new Scanner(System.in);
     }
 

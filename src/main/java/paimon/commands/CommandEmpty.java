@@ -12,4 +12,9 @@ public class CommandEmpty extends Command {
     public boolean execute(TaskList t, Ui ui) {
         return true;
     }
+
+    @Override
+    public String executeToString(TaskList t, Ui ui) {
+        return "Missing Command.\n";
+    }
 }
