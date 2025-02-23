@@ -1,5 +1,9 @@
 package paimon.parser;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import paimon.commands.Command;
 import paimon.commands.CommandCreate;
 import paimon.commands.CommandDelete;
@@ -9,6 +13,7 @@ import paimon.commands.CommandGoodbye;
 import paimon.commands.CommandInsert;
 import paimon.commands.CommandList;
 import paimon.commands.CommandMark;
+import paimon.commands.CommandText;
 import paimon.commands.CommandUnmark;
 import paimon.exceptions.PaimonInvalidInputException;
 import paimon.items.Deadline;
@@ -57,8 +62,9 @@ public class Parser {
             }
         } catch (PaimonInvalidInputException e) {
             System.out.println(e.getMessage());
+            return new CommandText(e.getMessage());
         }
-        return new CommandEmpty();
+        // return new CommandEmpty();
     }
 
     private static Command parseMarkCommand(String str) {
@@ -97,22 +103,49 @@ public class Parser {
         return new CommandCreate(todo);
     }
 
-    private static Command parseDeadlineCommand(String str) {
+    private static Command parseDeadlineCommand(String str) throws PaimonInvalidInputException {
         String description = str.substring(9);
+
+        // check if the deadline contains /by
+        if (!description.contains(" /by ")) {
+            throw new PaimonInvalidInputException("Deadline should contain /by");
+        }
         assert description.contains(" /by ") : "Deadline should contain /by";
         String[] arr = description.split(" /by ");
+        
+        // check format of date and time.
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
+            LocalDateTime.parse(arr[1], formatter);
+        } catch (DateTimeParseException e) {
+            throw new PaimonInvalidInputException("date and time format is not correct! it should be d/M/yyyy HHmm");
+        }
         Deadline deadline = new Deadline(arr[0], arr[1]);
 
         Parser.reverseCommand = new CommandDelete(Parser.items.size());
         return new CommandCreate(deadline);
     }
 
-    private static Command parseEventCommand(String str) {
+    private static Command parseEventCommand(String str) throws PaimonInvalidInputException {
         String description = str.substring(6);
+        
+        // check if the event contains /from and /to
+        if (!description.contains(" /from ") || !description.contains(" /to ")) {
+            throw new PaimonInvalidInputException("Event should contain /from and /to");
+        }
         assert description.contains(" /from ") : "Event should contain /from";
         assert description.contains(" /to ") : "Event should contain /to";
         String[] arr = description.split(" /from ");
         String[] arr2 = arr[1].split(" /to ");
+
+        // checking validity of data and time. 
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
+            LocalDateTime.parse(arr2[0], formatter);
+            LocalDateTime.parse(arr2[1], formatter);
+        } catch (DateTimeParseException e) {
+            throw new PaimonInvalidInputException("date and time format is not correct! it should be d/M/yyyy HHmm");
+        }
         Event event = new Event(arr[0], arr2[0], arr2[1]);
 
         Parser.reverseCommand = new CommandDelete(Parser.items.size());
