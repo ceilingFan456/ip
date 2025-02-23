@@ -25,22 +25,22 @@ public class MainWindow extends AnchorPane {
 
     private Paimon paimon;
 
-//    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-//    private Image paimonImage = new Image(this.getClass().getResourceAsStream("/images/Paimon_strong.png"));
+    // private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+    // private Image paimonImage = new Image(this.getClass().getResourceAsStream("/images/Paimon_strong.png"));
 
-     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/tabibito.jpg"));
-     private Image paimonImage = new Image(this.getClass().getResourceAsStream("/images/Paimon_checking.jpeg"));
-     private ArrayList<Image> paimonImages = new ArrayList<Image>();
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/tabibito.jpg"));
+    private Image paimonImage = new Image(this.getClass().getResourceAsStream("/images/Paimon_checking.jpeg"));
+    private ArrayList<Image> paimonImages = new ArrayList<Image>();
 
     /** Injects the Duke instance */
     public void setPaimon(Paimon p) {
         this.paimon = p;
         
-         // add all images with paimon in the name to the list 
-         paimonImages.add(new Image(this.getClass().getResourceAsStream("/images/Paimon_checking.jpeg")));
-         paimonImages.add(new Image(this.getClass().getResourceAsStream("/images/Paimon_strong.png")));
-         paimonImages.add(new Image(this.getClass().getResourceAsStream("/images/Paimon_tired.jpeg")));
-         paimonImages.add(new Image(this.getClass().getResourceAsStream("/images/Paimon_wakeup.jpeg")));
+        // add all images with paimon in the name to the list 
+        paimonImages.add(new Image(this.getClass().getResourceAsStream("/images/Paimon_checking.jpeg")));
+        paimonImages.add(new Image(this.getClass().getResourceAsStream("/images/Paimon_strong.png")));
+        paimonImages.add(new Image(this.getClass().getResourceAsStream("/images/Paimon_tired.jpeg")));
+        paimonImages.add(new Image(this.getClass().getResourceAsStream("/images/Paimon_wakeup.jpeg")));
     }
 
     /**
@@ -53,8 +53,8 @@ public class MainWindow extends AnchorPane {
         String response = paimon.getResponse(input);
 
         // choose a random paimon image 
-         int randomIndex = (int) (Math.random() * paimonImages.size());
-         paimonImage = paimonImages.get(randomIndex);
+        int randomIndex = (int) (Math.random() * paimonImages.size());
+        paimonImage = paimonImages.get(randomIndex);
 
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
