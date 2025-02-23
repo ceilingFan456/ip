@@ -51,7 +51,8 @@ public class Todo {
      * @return string with standard format to represent the item.
      */
     public String to_save() {
-        return getType() + " | " + (this.isDone ? "1" : "0") + " | " + getDescription();
+        String status = this.isDone ? "1" : "0";
+        return String.format("%s | %s | %s", getType(), status, getDescription());
     }
 
     @Override

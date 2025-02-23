@@ -77,7 +77,7 @@ public class Storage {
             }
 
             // print current item count 
-            System.out.println("Loaded " + items.size() + " items from the saved list.");
+            System.out.printf("Loaded %d items from the saved list.%n", items.size());
 
         } catch (IOException e) {
             System.err.println("An error occurred while reading the file: " + e.getMessage());

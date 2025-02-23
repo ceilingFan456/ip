@@ -10,7 +10,7 @@ import paimon.items.Todo;
 
 public class TaskListTest {
     @Test
-    public void addTest() {
+    public void addTask_successful() {
         TaskList taskList = new TaskList();
 
         Todo t0 = new Todo("todo borrow book");
@@ -27,7 +27,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void sizeTest() {
+    public void getSize_successful() {
         TaskList taskList = new TaskList();
 
         Todo t0 = new Todo("todo borrow book");
@@ -42,7 +42,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void markTest() {
+    public void markTask_successful() {
         TaskList taskList = new TaskList();
 
         Todo t0 = new Todo("todo borrow book");

@@ -89,7 +89,8 @@ public class TaskList implements Iterable<Todo> {
             System.out.println("Empty list!");
         } else {
             for (int i = 0; i < this.items.size(); i++) {
-                System.out.println((i + 1) + ". " + this.items.get(i));
+                Todo task = this.items.get(i);
+                System.out.printf("%d. %s%n", i + 1, task);
             }
         }
         System.out.println();
@@ -104,7 +105,8 @@ public class TaskList implements Iterable<Todo> {
             sb.append("Empty list!\n");
         } else {
             for (int i = 0; i < this.items.size(); i++) {
-                sb.append((i + 1) + ". " + this.items.get(i) + "\n");
+                Todo task = this.items.get(i);
+                sb.append(String.format("%d. %s%n", i + 1, task));
             }
         }
         return sb.toString();
