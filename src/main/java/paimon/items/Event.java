@@ -31,17 +31,21 @@ public class Event extends Todo {
 
     @Override
     public String to_save() {
-        return getType() + " | " + (this.isDone ? "1" : "0") + " | " 
-                + getDescription() + " | " 
-                + this.from.format(DateTimeFormatter.ofPattern("d/M/yyyy HHmm")) + " | " 
-                + this.to.format(DateTimeFormatter.ofPattern("d/M/yyyy HHmm"));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
+        String status = this.isDone ? "1" : "0";
+        String fromFormatted = this.from.format(formatter);
+        String toFormatted = this.to.format(formatter);
+
+        return String.format("%s | %s | %s | %s | %s", 
+                     getType(), status, getDescription(), fromFormatted, toFormatted);
     }
 
     @Override
     public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");
         return super.toString() 
-                + " (at: " + this.from.format(DateTimeFormatter.ofPattern("MMM d yyyy")) 
-                + " to " + this.to.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+            + " (at: " + this.from.format(formatter) 
+            + " to " + this.to.format(formatter) + ")";
     }
 
     @Override

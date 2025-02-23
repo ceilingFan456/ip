@@ -28,14 +28,18 @@ public class Deadline extends Todo {
 
     @Override
     public String to_save() {
-        return getType() + " | " + (this.isDone ? "1" : "0") + " | " 
-                + getDescription() + " | " 
-                + this.by.format(DateTimeFormatter.ofPattern("d/M/yyyy HHmm"));
+        return String.format("%s | %d | %s | %s",
+            getType(),
+            this.isDone ? 1 : 0,
+            getDescription(),
+            this.by.format(DateTimeFormatter.ofPattern("d/M/yyyy HHmm")));
     }
 
     @Override
     public String toString() {
-        return super.toString() + " (by: " + this.by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");
+        String formattedBy = this.by.format(formatter);
+        return super.toString() + " (by: " + formattedBy + ")";
     }
 
     @Override

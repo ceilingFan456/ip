@@ -29,60 +29,22 @@ public class Parser {
         try {
             if (str.equals("bye")) {
                 return new CommandGoodbye();
-
             } else if (str.equals("list")) {
                 return new CommandList();
-
             } else if (str.startsWith("mark")) {
-                String num = str.substring(5);
-                int index = Integer.parseInt(num) - 1;
-
-                assert index >= 0 : "Index should be non-negative";
-                return new CommandMark(index);
-            
+                return parseMarkCommand(str);
             } else if (str.startsWith("unmark")) {
-                String num = str.substring(7);
-                int index = Integer.parseInt(num) - 1;
-                assert index >= 0 : "Index should be non-negative";
-
-                return new CommandUnmark(index);
-
+                return parseUnmarkCommand(str);
             } else if (str.startsWith("delete")) {
-                String num = str.substring(7);
-                int index = Integer.parseInt(num) - 1;
-
-                assert index >= 0 : "Index should be non-negative"; 
-                return new CommandDelete(index);
-
+                return parseDeleteCommand(str);
             } else if (str.startsWith("todo")) {
-                String description = str.substring(5);
-                Todo todo = new Todo(description);
-                return new CommandCreate(todo);
-
+                return parseTodoCommand(str);
             } else if (str.startsWith("deadline")) {
-                String description = str.substring(9);
-
-                assert description.contains(" /by ") : "Deadline should contain /by";
-
-                String[] arr = description.split(" /by ");
-                Deadline deadline = new Deadline(arr[0], arr[1]);
-                return new CommandCreate(deadline);
-
+                return parseDeadlineCommand(str);
             } else if (str.startsWith("event")) {
-                String description = str.substring(6);
-
-                assert description.contains(" /from ") : "Event should contain /from";
-                assert description.contains(" /to ") : "Event should contain /to";
-
-                String[] arr = description.split(" /from ");
-                String[] arr2 = arr[1].split(" /to ");
-                Event event = new Event(arr[0], arr2[0], arr2[1]);
-                return new CommandCreate(event);
-
+                return parseEventCommand(str);
             } else if (str.startsWith("find")) {
-                String keyword = str.substring(5);
-                return new CommandFind(keyword);
-
+                return parseFindCommand(str);
             } else {
                 throw new PaimonInvalidInputException(str);
             }
@@ -90,5 +52,55 @@ public class Parser {
             System.out.println(e.getMessage());
         }
         return new CommandEmpty();
+    }
+
+    private static Command parseMarkCommand(String str) {
+        String num = str.substring(5);
+        int index = Integer.parseInt(num) - 1;
+        assert index >= 0 : "Index should be non-negative";
+        return new CommandMark(index);
+    }
+
+    private static Command parseUnmarkCommand(String str) {
+        String num = str.substring(7);
+        int index = Integer.parseInt(num) - 1;
+        assert index >= 0 : "Index should be non-negative";
+        return new CommandUnmark(index);
+    }
+
+    private static Command parseDeleteCommand(String str) {
+        String num = str.substring(7);
+        int index = Integer.parseInt(num) - 1;
+        assert index >= 0 : "Index should be non-negative";
+        return new CommandDelete(index);
+    }
+
+    private static Command parseTodoCommand(String str) {
+        String description = str.substring(5);
+        Todo todo = new Todo(description);
+        return new CommandCreate(todo);
+    }
+
+    private static Command parseDeadlineCommand(String str) {
+        String description = str.substring(9);
+        assert description.contains(" /by ") : "Deadline should contain /by";
+        String[] arr = description.split(" /by ");
+        Deadline deadline = new Deadline(arr[0], arr[1]);
+        return new CommandCreate(deadline);
+    }
+
+    private static Command parseEventCommand(String str) {
+        String description = str.substring(6);
+        assert description.contains(" /from ") : "Event should contain /from";
+        assert description.contains(" /to ") : "Event should contain /to";
+        String[] arr = description.split(" /from ");
+        String[] arr2 = arr[1].split(" /to ");
+        Event event = new Event(arr[0], arr2[0], arr2[1]);
+        return new CommandCreate(event);
+    }
+
+    private static Command parseFindCommand(String str) {
+        String keyword = str.substring(5);
+        return new CommandFind(keyword);
     }
 }
