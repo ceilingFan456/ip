@@ -24,6 +24,8 @@ public class Paimon {
         this.storage = new Storage();
         this.ui = new Ui();
 
+        Parser.setTasklist(this.items); // set the items for the parser
+
         // load the items
         this.storage.populateTaskList(this.items);
     }

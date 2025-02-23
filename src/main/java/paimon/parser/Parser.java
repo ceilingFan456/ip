@@ -6,6 +6,7 @@ import paimon.commands.CommandDelete;
 import paimon.commands.CommandEmpty;
 import paimon.commands.CommandFind;
 import paimon.commands.CommandGoodbye;
+import paimon.commands.CommandInsert;
 import paimon.commands.CommandList;
 import paimon.commands.CommandMark;
 import paimon.commands.CommandUnmark;
@@ -13,11 +14,15 @@ import paimon.exceptions.PaimonInvalidInputException;
 import paimon.items.Deadline;
 import paimon.items.Event;
 import paimon.items.Todo;
+import paimon.tasklist.TaskList;
 
 /**
  * Parse class that parse the natural language input string into Command objects.
  */
 public class Parser {
+
+    private static Command reverseCommand = new CommandEmpty(); // execute this to reverse the last command
+    private static TaskList items;
 
     /**
      * Parses the input string and returns the corresponding Command object.
@@ -45,6 +50,8 @@ public class Parser {
                 return parseEventCommand(str);
             } else if (str.startsWith("find")) {
                 return parseFindCommand(str);
+            } else if (str.startsWith("undo")) {
+                return parseUndoCommand(str);
             } else {
                 throw new PaimonInvalidInputException(str);
             }
@@ -58,6 +65,8 @@ public class Parser {
         String num = str.substring(5);
         int index = Integer.parseInt(num) - 1;
         assert index >= 0 : "Index should be non-negative";
+
+        Parser.reverseCommand = new CommandUnmark(index);
         return new CommandMark(index);
     }
 
@@ -65,6 +74,8 @@ public class Parser {
         String num = str.substring(7);
         int index = Integer.parseInt(num) - 1;
         assert index >= 0 : "Index should be non-negative";
+
+        Parser.reverseCommand = new CommandMark(index);
         return new CommandUnmark(index);
     }
 
@@ -72,12 +83,17 @@ public class Parser {
         String num = str.substring(7);
         int index = Integer.parseInt(num) - 1;
         assert index >= 0 : "Index should be non-negative";
+
+        // add the item back 
+        Parser.reverseCommand = new CommandInsert(Parser.items.get(index), index);
         return new CommandDelete(index);
     }
 
     private static Command parseTodoCommand(String str) {
         String description = str.substring(5);
         Todo todo = new Todo(description);
+
+        Parser.reverseCommand = new CommandDelete(Parser.items.size());
         return new CommandCreate(todo);
     }
 
@@ -86,6 +102,8 @@ public class Parser {
         assert description.contains(" /by ") : "Deadline should contain /by";
         String[] arr = description.split(" /by ");
         Deadline deadline = new Deadline(arr[0], arr[1]);
+
+        Parser.reverseCommand = new CommandDelete(Parser.items.size());
         return new CommandCreate(deadline);
     }
 
@@ -96,11 +114,25 @@ public class Parser {
         String[] arr = description.split(" /from ");
         String[] arr2 = arr[1].split(" /to ");
         Event event = new Event(arr[0], arr2[0], arr2[1]);
+
+        Parser.reverseCommand = new CommandDelete(Parser.items.size());
         return new CommandCreate(event);
     }
 
     private static Command parseFindCommand(String str) {
         String keyword = str.substring(5);
+
+        Parser.reverseCommand = new CommandEmpty();
         return new CommandFind(keyword);
+    }
+
+    private static Command parseUndoCommand(String str) {
+        Command res = Parser.reverseCommand;
+        Parser.reverseCommand = new CommandEmpty();
+        return res;
+    }
+
+    public static void setTasklist(TaskList items) {
+        Parser.items = items;
     }
 }
