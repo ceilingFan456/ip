@@ -24,16 +24,21 @@ public class MainWindow extends AnchorPane {
     private Paimon paimon;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image paimonImage = new Image(this.getClass().getResourceAsStream("/images/Paimon_strong.png"));
 
-    @FXML
-    public void initialize() {
-        scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-    }
+    // private Image userImage = new Image(this.getClass().getResourceAsStream("/images/tabibito.jpg"));
+    // private Image paimonImage = new Image(this.getClass().getResourceAsStream("/images/Paimon_checking.jpeg"));
+    // private ArrayList<Image> paimonImages = new ArrayList<Image>();
 
     /** Injects the Duke instance */
-    public void setDuke(Paimon p) {
+    public void setPaimon(Paimon p) {
         this.paimon = p;
+        
+        // add all images with paimon in the name to the list 
+        // paimonImages.add(new Image(this.getClass().getResourceAsStream("/images/Paimon_checking.jpeg")));
+        // paimonImages.add(new Image(this.getClass().getResourceAsStream("/images/Paimon_strong.png")));
+        // paimonImages.add(new Image(this.getClass().getResourceAsStream("/images/Paimon_tired.jpeg")));
+        // paimonImages.add(new Image(this.getClass().getResourceAsStream("/images/Paimon_wakeup.jpeg")));
     }
 
     /**
@@ -44,9 +49,14 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = paimon.getResponse(input);
+
+        // choose a random paimon image 
+        // int randomIndex = (int) (Math.random() * paimonImages.size());
+        // paimonImage = paimonImages.get(randomIndex);
+
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getDukeDialog(response, paimonImage)
         );
         userInput.clear();
     }
