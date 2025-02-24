@@ -1,5 +1,7 @@
 package paimon;
 
+import java.util.ArrayList;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -23,17 +25,32 @@ public class MainWindow extends AnchorPane {
 
     private Paimon paimon;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    // private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+    // private Image paimonImage = new Image(this.getClass().getResourceAsStream("/images/Paimon_strong.png"));
 
-    @FXML
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/tabibito.jpg"));
+    private Image paimonImage = new Image(this.getClass().getResourceAsStream("/images/Paimon_checking.jpeg"));
+    private ArrayList<Image> paimonImages = new ArrayList<Image>();
+
+    /** 
+     *  Bind the VBox height property to the ScrollPane viewport height property
+     */
+    @FXML 
     public void initialize() {
-        scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
     }
 
-    /** Injects the Duke instance */
-    public void setDuke(Paimon p) {
+    /** 
+     * Injects the Duke instance  
+     */
+    public void setPaimon(Paimon p) {
         this.paimon = p;
+        
+        // add all images with paimon in the name to the list 
+        paimonImages.add(new Image(this.getClass().getResourceAsStream("/images/Paimon_checking.jpeg")));
+        paimonImages.add(new Image(this.getClass().getResourceAsStream("/images/Paimon_strong.png")));
+        paimonImages.add(new Image(this.getClass().getResourceAsStream("/images/Paimon_tired.jpeg")));
+        paimonImages.add(new Image(this.getClass().getResourceAsStream("/images/Paimon_wakeup.jpeg")));
     }
 
     /**
@@ -44,11 +61,29 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = paimon.getResponse(input);
+        if (response.equals("Goodbye paimon!")) {
+            System.exit(0);
+        }
+        
+        // choose a random paimon image 
+        int randomIndex = (int) (Math.random() * paimonImages.size());
+        paimonImage = paimonImages.get(randomIndex);
+
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getDukeDialog(response, paimonImage)
         );
         userInput.clear();
+    }
+
+    /**
+     * Displays the welcome message from Paimon.
+     */
+    @FXML
+    public void displayWelcomeMessage() {
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog(paimon.getWelcomeMessage(), paimonImage)
+        );
     }
 }
 

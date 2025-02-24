@@ -10,7 +10,7 @@
   <children>
     <Label fx:id="dialog" minHeight="-Infinity" text="Label" textAlignment="JUSTIFY" textFill="#f40303" wrapText="true">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="15.0" />
          </font></Label> <!-- we set wrapText to true and minHeight to -Infinity. This configuration wraps the text within the label, removes the minimum height constraint, and allows the label to grow vertically as needed -->
     <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" />
   </children>

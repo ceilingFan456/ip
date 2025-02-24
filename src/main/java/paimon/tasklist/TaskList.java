@@ -112,6 +112,16 @@ public class TaskList implements Iterable<Todo> {
         return sb.toString();
     }
 
+    /**
+     * Inserts a task at the given index
+     * 
+     * @param task the task to be inserted
+     * @param index the index to insert the task at
+     */
+    public void insert(Todo task, int index) {
+        this.items.add(index, task);
+    }
+
     @Override
     public java.util.Iterator<Todo> iterator() {
         return this.items.iterator();
