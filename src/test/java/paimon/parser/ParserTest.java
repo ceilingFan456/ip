@@ -21,6 +21,9 @@ public class ParserTest {
 
     @Test
     public void parse_markCommand_successful() {
+        TaskList list = new TaskList();
+        list.add(new Todo("dummy"));
+        Parser.setTasklist(list);
         assertEquals(new CommandMark(0), Parser.parse("mark 1"));
     }
 
@@ -35,6 +38,7 @@ public class ParserTest {
         Parser.setTasklist(new TaskList());
         assertEquals(new CommandCreate(new Deadline("return book", "2/12/2019 1800")), 
                 Parser.parse("deadline return book /by 2/12/2019 1800"));
+        // add dummy message for PR practice
     }
 
     @Test
