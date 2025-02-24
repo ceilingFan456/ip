@@ -70,25 +70,47 @@ public class Parser {
         // return new CommandEmpty();
     }
 
-    private static Command parseMarkCommand(String str) {
+    private static Command parseMarkCommand(String str) throws PaimonInvalidInputException {
+        if (str.length() <= 5) {
+            throw new PaimonInvalidInputException("Index of item to mark cannot be empty.");
+        }
         String num = str.substring(5);
         int index = Integer.parseInt(num) - 1;
-        assert index >= 0 : "Index should be non-negative";
+        
+        if (index >= Parser.items.size()) {
+            throw new PaimonInvalidInputException("Index out of range. There are only " 
+                    + Parser.items.size() + " items in the current list.");
+        }
+        if (index < 0) {
+            throw new PaimonInvalidInputException("Index out of range. Index should be non-negative.");
+        }
 
         Parser.reverseCommand = new CommandUnmark(index);
         return new CommandMark(index);
     }
 
-    private static Command parseUnmarkCommand(String str) {
+    private static Command parseUnmarkCommand(String str) throws PaimonInvalidInputException{
+        if (str.length() <= 7) {
+            throw new PaimonInvalidInputException("Index of item to unmark cannot be empty.");
+        }
         String num = str.substring(7);
         int index = Integer.parseInt(num) - 1;
-        assert index >= 0 : "Index should be non-negative";
+        if (index >= Parser.items.size()) {
+            throw new PaimonInvalidInputException("Index out of range. There are only " 
+                    + Parser.items.size() + " items in the current list.");
+        }
+        if (index < 0) {
+            throw new PaimonInvalidInputException("Index out of range. Index should be non-negative.");
+        }
 
         Parser.reverseCommand = new CommandMark(index);
         return new CommandUnmark(index);
     }
 
     private static Command parseDeleteCommand(String str) {
+        if (str.length() <= 7) {
+            return new CommandText("Index of item to delete cannot be empty.");
+        }
         String num = str.substring(7);
         int index = Integer.parseInt(num) - 1;
         assert index >= 0 : "Index should be non-negative";
@@ -98,7 +120,10 @@ public class Parser {
         return new CommandDelete(index);
     }
 
-    private static Command parseTodoCommand(String str) {
+    private static Command parseTodoCommand(String str) throws PaimonInvalidInputException {
+        if (str.length() <= 5) {
+            throw new PaimonInvalidInputException("Description of todo cannot be empty.");
+        }
         String description = str.substring(5);
         Todo todo = new Todo(description);
 
@@ -107,6 +132,9 @@ public class Parser {
     }
 
     private static Command parseDeadlineCommand(String str) throws PaimonInvalidInputException {
+        if (str.length() <= 9) {
+            throw new PaimonInvalidInputException("Description of deadline cannot be empty.");
+        }
         String description = str.substring(9);
 
         // check if the deadline contains /by
@@ -130,6 +158,9 @@ public class Parser {
     }
 
     private static Command parseEventCommand(String str) throws PaimonInvalidInputException {
+        if (str.length() <= 6) {
+            throw new PaimonInvalidInputException("Description of event cannot be empty.");
+        }
         String description = str.substring(6);
         
         // check if the event contains /from and /to
@@ -156,6 +187,9 @@ public class Parser {
     }
 
     private static Command parseFindCommand(String str) {
+        if (str.length() <= 5) {
+            return new CommandText("Keyword cannot be empty.");
+        }
         String keyword = str.substring(5);
 
         Parser.reverseCommand = new CommandEmpty();
