@@ -15,6 +15,6 @@ public class CommandGoodbye extends Command {
 
     @Override
     public String executeToString(TaskList t, Ui ui) {
-        return "Goodbye!";
+        return "Goodbye paimon!";
     }
 }

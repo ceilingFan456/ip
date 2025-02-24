@@ -89,7 +89,7 @@ public class Parser {
         return new CommandMark(index);
     }
 
-    private static Command parseUnmarkCommand(String str) throws PaimonInvalidInputException{
+    private static Command parseUnmarkCommand(String str) throws PaimonInvalidInputException {
         if (str.length() <= 7) {
             throw new PaimonInvalidInputException("Index of item to unmark cannot be empty.");
         }

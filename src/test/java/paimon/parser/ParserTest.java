@@ -21,6 +21,9 @@ public class ParserTest {
 
     @Test
     public void parse_markCommand_successful() {
+        TaskList list = new TaskList();
+        list.add(new Todo("dummy"));
+        Parser.setTasklist(list);
         assertEquals(new CommandMark(0), Parser.parse("mark 1"));
     }
 

@@ -61,6 +61,9 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = paimon.getResponse(input);
+        if (response.equals("Goodbye paimon!")) {
+            System.exit(0);
+        }
         
         // choose a random paimon image 
         int randomIndex = (int) (Math.random() * paimonImages.size());
