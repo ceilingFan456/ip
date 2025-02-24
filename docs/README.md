@@ -57,7 +57,8 @@ find book
 ```
 
 ### 7. Undoing Last Command
-Reverses the effect of the last action performed. However, this can only be done once. And "undo an undo" has no effect currently.
+Reverses the effect of the last action performed. However, this can only be done once. For example, "undo an undo" has no effect currently.
+For some commands like `list`, `undo` has no effect.
 ```
 undo
 ```
