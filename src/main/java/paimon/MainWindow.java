@@ -32,7 +32,17 @@ public class MainWindow extends AnchorPane {
     private Image paimonImage = new Image(this.getClass().getResourceAsStream("/images/Paimon_checking.jpeg"));
     private ArrayList<Image> paimonImages = new ArrayList<Image>();
 
-    /** Injects the Duke instance */
+    /** 
+     *  Bind the VBox height property to the ScrollPane viewport height property
+     */
+    @FXML 
+    public void initialize() {
+        dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
+    }
+
+    /** 
+     * Injects the Duke instance  
+     */
     public void setPaimon(Paimon p) {
         this.paimon = p;
         
