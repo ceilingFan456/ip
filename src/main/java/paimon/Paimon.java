@@ -60,6 +60,9 @@ public class Paimon {
         return res;
     }
 
+    /** 
+     * Returns the welcome message from Paimon :D.
+     */
     public String getWelcomeMessage() {
         return this.ui.getWelcomeMessage();
     }
