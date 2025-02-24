@@ -59,4 +59,8 @@ public class Paimon {
         this.storage.save(this.items);
         return res;
     }
+
+    public String getWelcomeMessage() {
+        return this.ui.getWelcomeMessage();
+    }
 }

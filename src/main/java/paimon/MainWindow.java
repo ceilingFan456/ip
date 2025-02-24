@@ -51,7 +51,7 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = paimon.getResponse(input);
-
+        
         // choose a random paimon image 
         int randomIndex = (int) (Math.random() * paimonImages.size());
         paimonImage = paimonImages.get(randomIndex);
@@ -61,6 +61,16 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDukeDialog(response, paimonImage)
         );
         userInput.clear();
+    }
+
+    /**
+     * Displays the welcome message from Paimon.
+     */
+    @FXML
+    public void displayWelcomeMessage() {
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog(paimon.getWelcomeMessage(), paimonImage)
+        );
     }
 }
 

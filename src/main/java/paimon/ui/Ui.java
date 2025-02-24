@@ -47,4 +47,9 @@ public class Ui {
     public void goodbye() {
         System.out.println("Bye. Hope to see you again soon!");
     }
+
+
+    public String getWelcomeMessage() {
+        return "Hello! I'm Paimon\nWhat can I do for you?\n";
+    }
 }

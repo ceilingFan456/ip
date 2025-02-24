@@ -22,7 +22,11 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setPaimon(paimon); // inject the Duke instance
+            // fxmlLoader.<MainWindow>getController().setPaimon(paimon); // inject the Duke instance
+            MainWindow mainWindow = fxmlLoader.<MainWindow>getController();
+            mainWindow.setPaimon(paimon);
+            stage.setTitle("Paimon"); // add the title of the window
+            mainWindow.displayWelcomeMessage(); // show the welcome message
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
