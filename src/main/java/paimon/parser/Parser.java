@@ -36,6 +36,9 @@ public class Parser {
      * @return Command object that can be executed.
      */
     public static Command parse(String str) {
+        // remove tracling and leading whitespaces
+        str = str.trim();
+
         try {
             if (str.equals("bye")) {
                 return new CommandGoodbye();
