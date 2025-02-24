@@ -24,6 +24,13 @@ public class CommandDelete extends Command {
     }
 
     @Override
+    public String executeToString(TaskList t, Ui ui) {
+        Todo d = t.remove(index);
+        String res = "Noted. I've removed this task:\n" + d + "\nNow you have " + t.size() + " tasks in the list.\n";
+        return res;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (obj instanceof CommandDelete) {
             CommandDelete c = (CommandDelete) obj;

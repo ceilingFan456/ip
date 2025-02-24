@@ -89,10 +89,37 @@ public class TaskList implements Iterable<Todo> {
             System.out.println("Empty list!");
         } else {
             for (int i = 0; i < this.items.size(); i++) {
-                System.out.println((i + 1) + ". " + this.items.get(i));
+                Todo task = this.items.get(i);
+                System.out.printf("%d. %s%n", i + 1, task);
             }
         }
         System.out.println();
+    }
+
+    /**
+     * Lists all the current items in the list and outputs to screen.
+     */
+    public String list_items_toString() {
+        StringBuilder sb = new StringBuilder();
+        if (this.items.size() == 0) {
+            sb.append("Empty list!\n");
+        } else {
+            for (int i = 0; i < this.items.size(); i++) {
+                Todo task = this.items.get(i);
+                sb.append(String.format("%d. %s%n", i + 1, task));
+            }
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Inserts a task at the given index
+     * 
+     * @param task the task to be inserted
+     * @param index the index to insert the task at
+     */
+    public void insert(Todo task, int index) {
+        this.items.add(index, task);
     }
 
     @Override

@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Ui {
     private Scanner sc;
 
-    public UI() {
+    public Ui() {
         this.sc = new Scanner(System.in);
     }
 
@@ -46,5 +46,10 @@ public class Ui {
      */
     public void goodbye() {
         System.out.println("Bye. Hope to see you again soon!");
+    }
+
+
+    public String getWelcomeMessage() {
+        return "Hello! I'm Paimon\nWhat can I do for you?\n";
     }
 }

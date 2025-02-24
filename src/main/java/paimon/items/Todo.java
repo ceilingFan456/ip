@@ -1,15 +1,22 @@
 package paimon.items;
 
+/**
+ *  Todo is a class that has a description and a status.
+ */
 public class Todo {
     protected String description;
     protected boolean isDone;
 
+    /** 
+     * Constructor for Todo.
+     * 
+     * @param description the description of the task.
+     */
     public Todo(String description) {
         this.description = description;
         this.isDone = false;
     }
 
-    // fixed functions 
     public String getDescription() {
         return description;
     }
@@ -44,7 +51,8 @@ public class Todo {
      * @return string with standard format to represent the item.
      */
     public String to_save() {
-        return getType() + " | " + (this.isDone ? "1" : "0") + " | " + getDescription();
+        String status = this.isDone ? "1" : "0";
+        return String.format("%s | %s | %s", getType(), status, getDescription());
     }
 
     @Override

@@ -22,6 +22,13 @@ public class CommandMark extends Command {
     }
 
     @Override
+    public String executeToString(TaskList t, Ui ui) {
+        t.mark(index);
+        String res = "Nice! I've marked this task as done:\n" + t.get(index) + "\n";
+        return res;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (obj instanceof CommandMark) {
             CommandMark c = (CommandMark) obj;
