@@ -36,12 +36,12 @@ public class Paimon {
      */
     public void run() {
         this.ui.greet();
-        boolean running = true;
+        boolean isRunnning = true;
         
-        while (running) {
+        while (isRunnning) {
             String str = this.ui.readCommand();
             Command c = Parser.parse(str);
-            running = c.execute(items, ui);
+            isRunnning = c.execute(items, ui);
             this.storage.save(this.items);
         }
     }
